@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/basil/project/DHT11_ble/frimware/build/CMakeFiles/bootloader
+/home/basil/project/DHT11_ble/frimware/build/CMakeFiles/bootloader.rule
+/home/basil/project/DHT11_ble/frimware/build/CMakeFiles/bootloader-complete.rule
+/home/basil/project/DHT11_ble/frimware/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/basil/project/DHT11_ble/frimware/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/basil/project/DHT11_ble/frimware/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/basil/project/DHT11_ble/frimware/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/basil/project/DHT11_ble/frimware/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/basil/project/DHT11_ble/frimware/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/basil/project/DHT11_ble/frimware/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
