@@ -1,0 +1,75 @@
+[0/1] Re-running CMake...
+-- Building ESP-IDF components for target esp32
+-- Project sdkconfig file /home/basil/project/DHT11_ble/frimware/sdkconfig
+-- App "main" version: d541104-dirty
+-- Adding linker script /home/basil/project/DHT11_ble/frimware/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script /home/basil/esp/esp-idf/components/esp_system/ld/esp32/sections.ld.in
+-- Adding linker script /home/basil/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script /home/basil/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script /home/basil/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script /home/basil/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.newlib-data.ld
+-- Adding linker script /home/basil/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.syscalls.ld
+-- Adding linker script /home/basil/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.newlib-funcs.ld
+-- Adding linker script /home/basil/esp/esp-idf/components/soc/esp32/ld/esp32.peripherals.ld
+-- Components: app_trace app_update bootloader bootloader_support bt cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_common esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_netif esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_system esp_timer esp_wifi espcoredump esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash openthread partition_table perfmon protobuf-c protocomm pthread sdmmc soc spi_flash spiffs tcp_transport ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant xtensa
+-- Component paths: /home/basil/esp/esp-idf/components/app_trace /home/basil/esp/esp-idf/components/app_update /home/basil/esp/esp-idf/components/bootloader /home/basil/esp/esp-idf/components/bootloader_support /home/basil/esp/esp-idf/components/bt /home/basil/esp/esp-idf/components/cmock /home/basil/esp/esp-idf/components/console /home/basil/esp/esp-idf/components/cxx /home/basil/esp/esp-idf/components/driver /home/basil/esp/esp-idf/components/efuse /home/basil/esp/esp-idf/components/esp-tls /home/basil/esp/esp-idf/components/esp_adc /home/basil/esp/esp-idf/components/esp_app_format /home/basil/esp/esp-idf/components/esp_common /home/basil/esp/esp-idf/components/esp_eth /home/basil/esp/esp-idf/components/esp_event /home/basil/esp/esp-idf/components/esp_gdbstub /home/basil/esp/esp-idf/components/esp_hid /home/basil/esp/esp-idf/components/esp_http_client /home/basil/esp/esp-idf/components/esp_http_server /home/basil/esp/esp-idf/components/esp_https_ota /home/basil/esp/esp-idf/components/esp_https_server /home/basil/esp/esp-idf/components/esp_hw_support /home/basil/esp/esp-idf/components/esp_lcd /home/basil/esp/esp-idf/components/esp_local_ctrl /home/basil/esp/esp-idf/components/esp_netif /home/basil/esp/esp-idf/components/esp_partition /home/basil/esp/esp-idf/components/esp_phy /home/basil/esp/esp-idf/components/esp_pm /home/basil/esp/esp-idf/components/esp_psram /home/basil/esp/esp-idf/components/esp_ringbuf /home/basil/esp/esp-idf/components/esp_rom /home/basil/esp/esp-idf/components/esp_system /home/basil/esp/esp-idf/components/esp_timer /home/basil/esp/esp-idf/components/esp_wifi /home/basil/esp/esp-idf/components/espcoredump /home/basil/esp/esp-idf/components/esptool_py /home/basil/esp/esp-idf/components/fatfs /home/basil/esp/esp-idf/components/freertos /home/basil/esp/esp-idf/components/hal /home/basil/esp/esp-idf/components/heap /home/basil/esp/esp-idf/components/http_parser /home/basil/esp/esp-idf/components/idf_test /home/basil/esp/esp-idf/components/ieee802154 /home/basil/esp/esp-idf/components/json /home/basil/esp/esp-idf/components/log /home/basil/esp/esp-idf/components/lwip /home/basil/project/DHT11_ble/frimware/main /home/basil/esp/esp-idf/components/mbedtls /home/basil/esp/esp-idf/components/mqtt /home/basil/esp/esp-idf/components/newlib /home/basil/esp/esp-idf/components/nvs_flash /home/basil/esp/esp-idf/components/openthread /home/basil/esp/esp-idf/components/partition_table /home/basil/esp/esp-idf/components/perfmon /home/basil/esp/esp-idf/components/protobuf-c /home/basil/esp/esp-idf/components/protocomm /home/basil/esp/esp-idf/components/pthread /home/basil/esp/esp-idf/components/sdmmc /home/basil/esp/esp-idf/components/soc /home/basil/esp/esp-idf/components/spi_flash /home/basil/esp/esp-idf/components/spiffs /home/basil/esp/esp-idf/components/tcp_transport /home/basil/esp/esp-idf/components/ulp /home/basil/esp/esp-idf/components/unity /home/basil/esp/esp-idf/components/usb /home/basil/esp/esp-idf/components/vfs /home/basil/esp/esp-idf/components/wear_levelling /home/basil/esp/esp-idf/components/wifi_provisioning /home/basil/esp/esp-idf/components/wpa_supplicant /home/basil/esp/esp-idf/components/xtensa
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/basil/project/DHT11_ble/frimware/build
+[1/12] Performing build step for 'bootloader'
+[1/1] cd /home/basil/project/DHT11_ble/frimware/build/bootloader/esp-idf/esptool_py && /home/basil/.espressif/python_env/idf5.0_py3.10_env/bin/python /home/basil/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/basil/project/DHT11_ble/frimware/build/bootloader/bootloader.bin
+Bootloader binary size 0x6700 bytes. 0x900 bytes (8%) free.
+[2/10] Building C object esp-idf/esp_app_format/CMakeFiles/__idf_esp_app_format.dir/esp_app_desc.c.obj
+[3/10] Linking C static library esp-idf/esp_app_format/libesp_app_format.a
+[4/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+[5/10] Linking C static library esp-idf/main/libmain.a
+[6/10] Generating ld/sections.ld
+[7/10] Linking CXX executable main.elf
+[8/10] Generating binary image from built executable
+esptool.py v4.5.1
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated /home/basil/project/DHT11_ble/frimware/build/main.bin
+[9/10] cd /home/basil/project/DHT11_ble/frimware/build/esp-idf/esptool_py && /home/basil/.espressif/python_env/idf5.0_py3.10_env/bin/python /home/basil/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/basil/project/DHT11_ble/frimware/build/partition_table/partition-table.bin /home/basil/project/DHT11_ble/frimware/build/main.bin
+main.bin binary size 0x2bf30 bytes. Smallest app partition is 0x100000 bytes. 0xd40d0 bytes (83%) free.
+[9/10] cd /home/basil/esp/esp-idf/components/esptool_py && /usr/bin/cmake -D IDF_PATH=/home/basil/esp/esp-idf -D "SERIAL_TOOL=/home/basil/.espressif/python_env/idf5.0_py3.10_env/bin/python;;/home/basil/esp/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32" -D "SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args" -D WORKING_DIRECTORY=/home/basil/project/DHT11_ble/frimware/build -P /home/basil/esp/esp-idf/components/esptool_py/run_serial_tool.cmake
+esptool esp32 -p /dev/ttyUSB0 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 2MB 0x1000 bootloader/bootloader.bin 0x10000 main.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.5.1
+Serial port /dev/ttyUSB0
+Connecting....
+Chip is ESP32-D0WDQ6 (revision v1.0)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+WARNING: Detected crystal freq 41.01MHz is quite different to normalized freq 40MHz. Unsupported crystal in use?
+Crystal is 40MHz
+MAC: 0c:b8:15:f8:89:60
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00007fff...
+Flash will be erased from 0x00010000 to 0x0003bfff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+Compressed 26368 bytes to 16445...
+Writing at 0x00001000... (50 %)
+Writing at 0x000076b1... (100 %)
+Wrote 26368 bytes (16445 compressed) at 0x00001000 in 0.9 seconds (effective 243.0 kbit/s)...
+Hash of data verified.
+Compressed 180016 bytes to 94964...
+Writing at 0x00010000... (16 %)
+Writing at 0x0001b76c... (33 %)
+Writing at 0x00021063... (50 %)
+Writing at 0x00026a4c... (66 %)
+Writing at 0x0002f4e9... (83 %)
+Writing at 0x00037243... (100 %)
+Wrote 180016 bytes (94964 compressed) at 0x00010000 in 2.6 seconds (effective 548.1 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 103...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.1 seconds (effective 342.2 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
