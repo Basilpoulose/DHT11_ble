@@ -1,144 +1,110 @@
 #include <stdio.h>
-#include <unistd.h>
 #include "driver/gpio.h"
+#include <unistd.h>
+#define DHT_PIN GPIO_NUM_4
 
-#define DHT_OK 0
-#define DHT_ERROR_TIMEOUT -1
-#define DHT_ERROR_CHECKSUM -2
-#define DHT_CHECK_PERIOD_US 2
-#define DHT_CHECK_TIMEOUT_US 1000
+/*#define GPIO_OUTPUT_IO_0   4
 
-#define pin GPIO_NUM_4
+#define GPIO_OUTPUT_PIN_SEL  (1ULL<<GPIO_OUTPUT_IO_0)
 
-int wait_gpio_level(gpio_num_t pin, int level, unsigned int timeout)
+#define GPIO_INPUT_IO_0     4
+
+#define GPIO_INPUT_PIN_SEL  (1ULL<<GPIO_INPUT_IO_0)
+
+
+// cofigure gpio pin 
+
+void config_in()
 {
-    unsigned int response_time = timeout;
-    while (gpio_get_level(pin) == level)
-    {
-        if (response_time == 0)
-        {
-            printf("Error: Timeout\n");
-            return DHT_ERROR_TIMEOUT;
-        }
-        usleep(DHT_CHECK_PERIOD_US);
-        response_time--;
-    }
-    return DHT_OK;
+        gpio_config_t dht_conf ;
+        dht_conf.mode = GPIO_MODE_INPUT,
+        dht_conf.pin_bit_mask = GPIO_INPUT_PIN_SEL,
+        dht_conf.pull_down_en = 0,
+        dht_conf.pull_up_en = 0;
+
+    gpio_config(&dht_conf);
 }
 
-int dht_read(gpio_num_t pin, int dht_type, float *humidity, float *temperature)
+
+void config_out()
 {
-    unsigned int data[5] = {0};
-    unsigned int cnt = 7;
-    unsigned int idx = 0;
+        gpio_config_t dht_conf ;
+        dht_conf.mode = GPIO_MODE_OUTPUT,
+        dht_conf.pin_bit_mask = GPIO_OUTPUT_PIN_SEL,
+        dht_conf.pull_down_en = 0,
+        dht_conf.pull_up_en = 0;
 
-    // Start signal
-    gpio_set_direction(pin, GPIO_MODE_OUTPUT);
-    gpio_set_level(pin, 0);
-    usleep(2000);  // 20ms
-    gpio_set_level(pin, 1);
-    usleep(40);     // 40us
-    gpio_set_direction(pin, GPIO_MODE_INPUT);
+    gpio_config(&dht_conf);
+}*/
 
-    if (wait_gpio_level(pin, 0, DHT_CHECK_TIMEOUT_US) != DHT_OK)
+
+
+
+void dht_read(uint8_t* data)
+{
+    uint8_t last_read = 1;
+    uint8_t counter = 0;
+    uint8_t j = 0;
+    uint8_t i;
+
+    data[0]=data[1]=data[2]=data[3]=data[4]=0;
+
+    //config_out();
+    gpio_set_direction(DHT_PIN, GPIO_MODE_OUTPUT);
+    gpio_set_level(DHT_PIN,0);
+    usleep(2000);
+
+    gpio_set_level(DHT_PIN,1);
+    usleep(40);
+
+    //config_in();
+    gpio_set_direction(DHT_PIN, GPIO_MODE_INPUT);
+
+    for(i=0;i<=85;i++)
     {
-        return DHT_ERROR_TIMEOUT;
-    }
-
-    if (wait_gpio_level(pin, 1, DHT_CHECK_TIMEOUT_US) != DHT_OK)
-    {
-        return DHT_ERROR_TIMEOUT;
-    }
-
-    // Read data
-    for (int i = 0; i < 40; i++)
-    {
-        unsigned int response_time = 1000;
-        while (gpio_get_level(pin) == 0)
+        counter=0;
+        while(gpio_get_level(DHT_PIN)==last_read)
         {
-            if (response_time == 0)
-            {
-                printf("Error: Timeout\n");
-                return DHT_ERROR_TIMEOUT;
-            }
-            usleep(DHT_CHECK_PERIOD_US);
-            response_time--;
+            counter++;
+            usleep(1);
+            if(counter==255)
+            break;
         }
-        response_time = 1000;
-        while (gpio_get_level(pin) == 1)
-        {
-            if (response_time == 0)
-            {
-                printf("Error: Timeout\n");
-                return DHT_ERROR_TIMEOUT;
-            }
-            usleep(DHT_CHECK_PERIOD_US);
-            response_time--;
-        }
+        last_read = gpio_get_level(DHT_PIN);
 
-        if (response_time > 40)
-        {
-            data[idx] |= (1 << cnt);
-        }
+        if (counter == 255)
+            break;
 
-        if (cnt == 0)
-        {
-            cnt = 7;
-            idx++;
-        }
-        else
-        {
-            cnt--;
+        if ((i >= 4) && (i % 2 == 0)) {
+            data[j / 8] <<= 1;
+            if (counter > 16)
+                data[j / 8] |= 1;
+            j++;
+            
         }
     }
 
-    if (data[0] + data[1] + data[2] + data[3] != data[4])
-    {
-        return DHT_ERROR_CHECKSUM;
-    }
-
-    if (dht_type == 11)
-    {
-        *humidity = (float)data[0];
-        *temperature = (float)data[2];
-    }
-    else if (dht_type == 22)
-    {
-        *humidity = ((float)(data[0] << 8) + data[1]) / 10.0f;
-        *temperature = ((float)((data[2] & 0x7F) << 8) + data[3]) / 10.0f;
-        if (data[2] & 0x80)
-        {
-            *temperature *= -1.0f;
-        }
-    }
-    else
-    {
-        return DHT_ERROR_CHECKSUM;
-    }
-    
-    return DHT_OK;
 }
+void app_main() {
+    uint8_t data[5];
 
-void app_main()
-{
-    printf("DHT11/DHT22 reading\n");
-    float humidity = 0.0f;
-    float temperature = 0.0f;
-    int result = dht_read(pin, 22, &humidity, &temperature);  // Change the second parameter to 11 for DHT11
-    if (result == DHT_OK)
-    {
-        printf("Temperature: %.1f°C, Humidity: %.1f%%\n", temperature, humidity);
-    }
-    else if (result == DHT_ERROR_TIMEOUT)
-    {
-        printf("Error: Timeout\n");
-    }
-    else if (result == DHT_ERROR_CHECKSUM)
-    {
-        printf("Error: Checksum mismatch\n");
-    }
-    else
-    {
-        printf("Error: Unknown error\n");
+    float temp, humidity;
+
+    while (1) {
+        dht_read(data);
+
+        humidity = data[0]+ data[1] * 0.1;
+        temp = data[2];
+        if(data[3] & 0x80)
+        {
+            temp = -1 - temp;
+
+        }
+        temp += (data[3] & 0x0f) * 0.1;
+
+        printf("Temperature: %.1f °C\n", temp);
+        printf("Humidity: %.1f %%\n", humidity);
+
+        sleep(2);
     }
 }
