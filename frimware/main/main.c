@@ -93,14 +93,10 @@ void app_main() {
     while (1) {
         dht_read(data);
 
-        humidity = data[0]+ data[1] * 0.1;
-        temp = data[2];
-        if(data[3] & 0x80)
-        {
-            temp = -1 - temp;
-
-        }
-        temp += (data[3] & 0x0f) * 0.1;
+        humidity = data[0] + data[1] * 0.1;
+        temp = ((uint8_t)(data[2] & 0x7F)) << 8 | data[3];
+        temp *= 0.1;
+    
 
         printf("Temperature: %.1f °C\n", temp);
         printf("Humidity: %.1f %%\n", humidity);
